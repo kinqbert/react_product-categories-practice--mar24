@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 
-export const Table = ({ products, users, categories }) => (
+import SORT_FIELD from '../../utils/sortField';
+
+export const Table = ({ products, users, categories, handleSortClick }) => (
   <table
     data-cy="ProductTable"
     className="table is-striped is-narrow is-fullwidth"
@@ -10,7 +12,7 @@ export const Table = ({ products, users, categories }) => (
         <th>
           <span className="is-flex is-flex-wrap-nowrap">
             ID
-            <a href="#/">
+            <a href="#/" onClick={() => handleSortClick(SORT_FIELD.ID)}>
               <span className="icon">
                 <i data-cy="SortIcon" className="fas fa-sort" />
               </span>
@@ -21,9 +23,9 @@ export const Table = ({ products, users, categories }) => (
         <th>
           <span className="is-flex is-flex-wrap-nowrap">
             Product
-            <a href="#/">
+            <a href="#/" onClick={() => handleSortClick(SORT_FIELD.PRODUCT)}>
               <span className="icon">
-                <i data-cy="SortIcon" className="fas fa-sort-down" />
+                <i data-cy="SortIcon" className="fas fa-sort" />
               </span>
             </a>
           </span>
@@ -32,9 +34,9 @@ export const Table = ({ products, users, categories }) => (
         <th>
           <span className="is-flex is-flex-wrap-nowrap">
             Category
-            <a href="#/">
+            <a href="#/" onClick={() => handleSortClick(SORT_FIELD.CATEGORY)}>
               <span className="icon">
-                <i data-cy="SortIcon" className="fas fa-sort-up" />
+                <i data-cy="SortIcon" className="fas fa-sort" />
               </span>
             </a>
           </span>
@@ -43,7 +45,7 @@ export const Table = ({ products, users, categories }) => (
         <th>
           <span className="is-flex is-flex-wrap-nowrap">
             User
-            <a href="#/">
+            <a href="#/" onClick={() => handleSortClick(SORT_FIELD.USER)}>
               <span className="icon">
                 <i data-cy="SortIcon" className="fas fa-sort" />
               </span>
