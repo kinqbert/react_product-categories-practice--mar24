@@ -58,7 +58,7 @@ export const App = () => {
         ...selectedCategoriesIds.slice(0, indexOfClickedCategory),
         ...selectedCategoriesIds.slice(
           indexOfClickedCategory + 1,
-          selectedCategoriesIds.length - 1,
+          selectedCategoriesIds.length,
         ),
       ]);
     } else {
@@ -69,6 +69,7 @@ export const App = () => {
   const resetFilters = () => {
     setSelectedUserId(0);
     setSelectedCategoriesIds([]);
+    setQuery('');
   };
 
   return (
@@ -118,6 +119,7 @@ export const App = () => {
                   type="text"
                   className="input"
                   placeholder="Search"
+                  value={query}
                   onChange={event => setQuery(event.target.value)}
                 />
 
@@ -132,6 +134,7 @@ export const App = () => {
                       data-cy="ClearButton"
                       type="button"
                       className="delete"
+                      onClick={() => setQuery('')}
                     />
                   </span>
                 )}
