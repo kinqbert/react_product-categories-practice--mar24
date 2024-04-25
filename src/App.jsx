@@ -33,7 +33,9 @@ function getProducts(products, selectedUserId, selectedCategoriesId, query) {
   }
 
   if (query) {
-    result = result.filter(product => product.name.includes(query));
+    result = result.filter(product =>
+      product.name.toLowerCase().includes(query.toLowerCase()),
+    );
   }
 
   return result;
