@@ -8,7 +8,7 @@ import usersFromServer from './api/users';
 import categoriesFromServer from './api/categories';
 import productsFromServer from './api/products';
 
-function getProducts(products, selectedUserId, selectedCategoriesId) {
+function getProducts(products, selectedUserId, selectedCategoriesId, query) {
   let result = [...products];
 
   if (selectedUserId) {
@@ -30,6 +30,10 @@ function getProducts(products, selectedUserId, selectedCategoriesId) {
     );
   }
 
+  if (query) {
+    result = result.filter(product => product.name.includes(query));
+  }
+
   return result;
 }
 
@@ -42,6 +46,7 @@ export const App = () => {
     productsFromServer,
     selectedUserId,
     selectedCategoriesIds,
+    query,
   );
 
   const handleCategoryClick = clickedCategoryId => {
@@ -58,11 +63,6 @@ export const App = () => {
       ]);
     } else {
       setSelectedCategoriesIds([...selectedCategoriesIds, clickedCategoryId]);
-    }
-  };
-
-  const handleQueryChange = query => {
-    if (query) {
     }
   };
 
@@ -118,20 +118,23 @@ export const App = () => {
                   type="text"
                   className="input"
                   placeholder="Search"
+                  onChange={event => setQuery(event.target.value)}
                 />
 
                 <span className="icon is-left">
                   <i className="fas fa-search" aria-hidden="true" />
                 </span>
 
-                <span className="icon is-right">
-                  {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                  <button
-                    data-cy="ClearButton"
-                    type="button"
-                    className="delete"
-                  />
-                </span>
+                {query && (
+                  <span className="icon is-right">
+                    {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+                    <button
+                      data-cy="ClearButton"
+                      type="button"
+                      className="delete"
+                    />
+                  </span>
+                )}
               </p>
             </div>
 
