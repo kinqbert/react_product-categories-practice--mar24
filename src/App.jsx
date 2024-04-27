@@ -184,7 +184,7 @@ export const App = () => {
             <CategoriesFilter
               categoriesFromServer={categoriesFromServer}
               selectedCategoriesIds={selectedCategoriesIds}
-              setSelectedCategoriesIds={selectedCategoriesIds}
+              setSelectedCategoriesIds={setSelectedCategoriesIds}
               handleCategoryClick={handleCategoryClick}
             />
 
