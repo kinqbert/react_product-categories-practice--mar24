@@ -13,34 +13,33 @@ export default function getProducts(
 ) {
   let result = [...productsFromServer];
 
-  // filtering by user
-  if (selectedUserId) {
-    result = result.filter(product => {
-      const productCategory = categoriesFromServer.find(
-        category => product.categoryId === category.id,
-      );
-      const productUser = usersFromServer.find(
-        user => user.id === productCategory.ownerId,
-      );
-
-      return productUser.id === selectedUserId;
-    });
-  }
-
-  // filtering by category
-  if (selectedCategoriesId.length > 0) {
-    result = result.filter(product =>
-      selectedCategoriesId.includes(product.categoryId),
+  result = result.filter(product => {
+    const productCategory = categoriesFromServer.find(
+      category => product.categoryId === category.id,
     );
-  }
-
-  // filtering by query
-  if (query) {
-    result = result.filter(product =>
-      product.name.toLowerCase().includes(query.toLowerCase()),
+    const productUser = usersFromServer.find(
+      user => user.id === productCategory.ownerId,
     );
-  }
 
+    if (selectedUserId && productUser.id !== selectedUserId) {
+      return false;
+    }
+
+    if (
+      selectedCategoriesId.length > 0 &&
+      !selectedCategoriesId.includes(product.categoryId)
+    ) {
+      return false;
+    }
+
+    if (query && !product.name.toLowerCase().includes(query.toLowerCase())) {
+      return false;
+    }
+
+    return true;
+  });
+
+  // sorting
   if (sortField) {
     switch (sortField) {
       case SortField.ID:
