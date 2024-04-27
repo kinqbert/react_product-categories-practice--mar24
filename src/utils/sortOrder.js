@@ -1,4 +1,4 @@
-export default class sortOrder {
+export default class SortOrder {
   static ASC = 'asc';
 
   static DESC = 'desc';

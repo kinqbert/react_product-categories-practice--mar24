@@ -1,4 +1,4 @@
-export default class sortField {
+export default class SortField {
   static ID = 'id';
 
   static PRODUCT = 'product';

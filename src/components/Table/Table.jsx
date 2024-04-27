@@ -1,8 +1,17 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
+import cn from 'classnames';
 
-import SORT_FIELD from '../../utils/sortField';
+import SortField from '../../utils/SortField';
+import SortOrder from '../../utils/SortOrder';
 
-export const Table = ({ products, users, categories, handleSortClick }) => (
+export const Table = ({
+  products,
+  users,
+  categories,
+  sortField,
+  sortOrder,
+  handleSortClick,
+}) => (
   <table
     data-cy="ProductTable"
     className="table is-striped is-narrow is-fullwidth"
@@ -12,9 +21,20 @@ export const Table = ({ products, users, categories, handleSortClick }) => (
         <th>
           <span className="is-flex is-flex-wrap-nowrap">
             ID
-            <a href="#/" onClick={() => handleSortClick(SORT_FIELD.ID)}>
+            <a href="#/" onClick={() => handleSortClick(SortField.ID)}>
               <span className="icon">
-                <i data-cy="SortIcon" className="fas fa-sort" />
+                <i
+                  data-cy="SortIcon"
+                  className={cn({
+                    fas: true,
+                    'fa-sort': sortField !== SortField.ID,
+                    'fa-sort-up':
+                      sortField === SortField.ID && sortOrder === SortOrder.ASC,
+                    'fa-sort-down':
+                      sortField === SortField.ID &&
+                      sortOrder === SortOrder.DESC,
+                  })}
+                />
               </span>
             </a>
           </span>
@@ -23,9 +43,21 @@ export const Table = ({ products, users, categories, handleSortClick }) => (
         <th>
           <span className="is-flex is-flex-wrap-nowrap">
             Product
-            <a href="#/" onClick={() => handleSortClick(SORT_FIELD.PRODUCT)}>
+            <a href="#/" onClick={() => handleSortClick(SortField.PRODUCT)}>
               <span className="icon">
-                <i data-cy="SortIcon" className="fas fa-sort" />
+                <i
+                  data-cy="SortIcon"
+                  className={cn({
+                    fas: true,
+                    'fa-sort': sortField !== SortField.PRODUCT,
+                    'fa-sort-up':
+                      sortField === SortField.PRODUCT &&
+                      sortOrder === SortOrder.ASC,
+                    'fa-sort-down':
+                      sortField === SortField.PRODUCT &&
+                      sortOrder === SortOrder.DESC,
+                  })}
+                />
               </span>
             </a>
           </span>
@@ -34,9 +66,21 @@ export const Table = ({ products, users, categories, handleSortClick }) => (
         <th>
           <span className="is-flex is-flex-wrap-nowrap">
             Category
-            <a href="#/" onClick={() => handleSortClick(SORT_FIELD.CATEGORY)}>
+            <a href="#/" onClick={() => handleSortClick(SortField.CATEGORY)}>
               <span className="icon">
-                <i data-cy="SortIcon" className="fas fa-sort" />
+                <i
+                  data-cy="SortIcon"
+                  className={cn({
+                    fas: true,
+                    'fa-sort': sortField !== SortField.CATEGORY,
+                    'fa-sort-up':
+                      sortField === SortField.CATEGORY &&
+                      sortOrder === SortOrder.ASC,
+                    'fa-sort-down':
+                      sortField === SortField.CATEGORY &&
+                      sortOrder === SortOrder.DESC,
+                  })}
+                />
               </span>
             </a>
           </span>
@@ -45,9 +89,21 @@ export const Table = ({ products, users, categories, handleSortClick }) => (
         <th>
           <span className="is-flex is-flex-wrap-nowrap">
             User
-            <a href="#/" onClick={() => handleSortClick(SORT_FIELD.USER)}>
+            <a href="#/" onClick={() => handleSortClick(SortField.USER)}>
               <span className="icon">
-                <i data-cy="SortIcon" className="fas fa-sort" />
+                <i
+                  data-cy="SortIcon"
+                  className={cn({
+                    fas: true,
+                    'fa-sort': sortField !== SortField.USER,
+                    'fa-sort-up':
+                      sortField === SortField.USER &&
+                      sortOrder === SortOrder.ASC,
+                    'fa-sort-down':
+                      sortField === SortField.USER &&
+                      sortOrder === SortOrder.DESC,
+                  })}
+                />
               </span>
             </a>
           </span>
